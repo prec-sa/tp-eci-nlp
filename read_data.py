@@ -2,7 +2,7 @@
 import argparse
 import json
 import csv
-import string
+from utils import preprocess_sentence, it_sentences, it_labels
 
 def main():
     ap = argparse.ArgumentParser()
@@ -13,35 +13,29 @@ def main():
 
     sentence_data = open(args.sentences, 'r')
     csv_out=open("data_val.csv","w")
-    mywriter=csv.writer(csv_out,delimiter=" ")
-    
-    
-    
+    mywriter=csv.writer(csv_out, delimiter = '\t', escapechar = '\\',
+                        quoting = csv.QUOTE_NONE)
+
+
+
     if args.labels:
-        label_data = open(args.labels, 'r')
-        for sentence, label in zip(it_sentences(sentence_data), it_labels(label_data)):
-            # Tenemos la oración en sentence con su categoría en label
-            sentence = sentence.lower()
-            output="__label__"+label,sentence.translate(str.maketrans('', '', string.punctuation))
-            mywriter.writerow(output)
-            pass
+
+        with open(args.labels, 'r') as label_data:
+
+            for sentence, label in zip(it_sentences(sentence_data),
+                                       it_labels(label_data)):
+                # Tenemos la oración en sentence con su categoría en label
+
+                output = ["__label__" + label, preprocess_sentence(sentence)]
+                mywriter.writerow(output)
+
+        csv_out.close()
+
     else:
-        for sentence in it_sentences(sentence_data):            
+        for sentence in it_sentences(sentence_data):
         # Tenemos una oración en sentence
             #print(sentence)
-            pass        
-
-
-def it_sentences(sentence_data):
-    for line in sentence_data:
-        example = json.loads(line)
-        yield example['sentence2']
-
-def it_labels(label_data):
-    label_data_reader = csv.DictReader(label_data)
-    for example in label_data_reader:
-        yield example['gold_label']
-        
+            pass
 
 
 main()
