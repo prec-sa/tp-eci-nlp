@@ -1,0 +1,15 @@
+%timeit model = fasttext.train_supervised()
+
+threads:
+
+2: 2.47 s ± 32.8 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+
+4: 1.73 s ± 51.1 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+
+6: 1.6 s ± 43.4 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+
+8: 1.36 s ± 9.85 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+
+10: 1.3 s ± 42.3 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+
+12: 1.23 s ± 47.4 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
