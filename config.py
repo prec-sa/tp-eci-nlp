@@ -1,4 +1,4 @@
 from multiprocessing import cpu_count
 
 
-TRAIN_THREADS = (4 if cpu_count() == 2 else 12)
+TRAIN_THREADS = cpu_count() #(4 if cpu_count() == 4 else 12)
