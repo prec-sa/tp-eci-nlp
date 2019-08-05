@@ -36,10 +36,10 @@ def do_random_search(param_dists, n_iter, fixed_params={}):
 if __name__ == '__main__':
 
     dists = {
-            'dim': {'dist': randint, 'dist_params': {'low':100, 'high':1000} },
-            'wordNgrams': {'dist': randint, 'dist_params': {'low':1, 'high':10}},
+            'dim': {'dist': randint, 'dist_params': {'low':400, 'high':600} },
+            'wordNgrams': {'dist': randint, 'dist_params': {'low':1, 'high':14}},
             #'wordNgrams': {'dist': randint, 'dist_params': {'low':2, 'high':2}},
-            'ws': {'dist': randint, 'dist_params': {'low':1, 'high':10}}
+            'ws': {'dist': randint, 'dist_params': {'low':8, 'high':15}}
             }
 
     do_random_search(dists, n_iter=10, fixed_params={'wordNgrams':2})
